@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTRODUCCIÓN A LA KINESIOLOGÍA - Artrología y Biomecánica Articular (Facultad de Cs. Médicas - UCCuyo)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Outfit & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f7f9f6;
+            color: #1e293b;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Paleta Institucional UCCuyo (Verde Oliva) */
+        .text-accent { color: #436600; }
+        .bg-accent { background-color: #436600; }
+        .bg-accent-hover:hover { background-color: #324d00; }
+        .bg-accent-light { background-color: #f1f6eb; }
+        .border-accent { border-color: #436600; }
+
+        .text-primary { color: #436600; }
+        .bg-primary { background-color: #436600; }
+        .bg-primary-dark { background-color: #324d00; }
+        .border-primary { border-color: #436600; }
+        
+        .focus-accent:focus {
+            border-color: #436600;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 102, 0, 0.2);
+        }
+        
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Estilización de Sliders */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #436600;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -6px;
+            box-shadow: 0 2px 6px rgba(67, 102, 0, 0.4);
+            border: 2px solid #ffffff;
+            transition: transform 0.15s ease, background-color 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: #324d00;
+        }
+
+        .token-item {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .token-item:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent/20 text-gray-800">
+
+    <!-- Cabecera Institucional UCCuyo -->
+    <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    K
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800 tracking-wide uppercase">INTRODUCCIÓN A LA KINESIOLOGÍA</h1>
+                    <p class="text-xs text-gray-500 font-semibold">Lic. en Kinesiología y Fisiatría (Facultad de Cs. Médicas - UCCuyo)</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <!-- Botón Compendio -->
+                <button onclick="openCompendioModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-semibold rounded-lg border border-gray-200 hover:bg-gray-200 transition">
+                    <i class="fa-solid fa-book-bookmark text-accent"></i>
+                    <span class="hidden sm:inline">Compendio</span>
+                </button>
+                <!-- Botón Guía de Uso -->
+                <button onclick="openTutorial()" class="flex items-center gap-1.5 px-3 py-1.5 bg-accent text-white text-xs font-semibold rounded-lg shadow-sm hover:opacity-90 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Guía de Uso
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal con Barra Lateral -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6 flex flex-col lg:flex-row gap-6">
+        
+        <!-- Menú de Navegación Lateral -->
+        <nav class="w-full lg:w-64 flex flex-row lg:flex-col gap-2 bg-white p-3 rounded-2xl shadow-sm border border-gray-100 overflow-x-auto lg:overflow-x-visible whitespace-nowrap lg:whitespace-normal sticky top-20 h-fit">
+            <button onclick="switchTab('tab-criterios')" id="btn-tab-criterios" class="bg-accent text-white flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-semibold transition shadow-sm">
+                1. Criterios de Clasificación
+            </button>
+            <button onclick="switchTab('tab-fibrosas')" id="btn-tab-fibrosas" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                2. Articulaciones Fibrosas
+            </button>
+            <button onclick="switchTab('tab-sinostosis')" id="btn-tab-sinostosis" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                3. Sinostosis & Osificación
+            </button>
+            <button onclick="switchTab('tab-cartilaginosas')" id="btn-tab-cartilaginosas" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                4. Art. Cartilaginosas
+            </button>
+            <button onclick="switchTab('tab-casos')" id="btn-tab-casos" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                5. Casos Clínicos Kinésicos
+            </button>
+        </nav>
+
+        <!-- Área de Contenido Dinámico -->
+        <div class="flex-1 space-y-6">
+
+            <!-- =========================================================================
+                 MÓDULO 1: CRITERIOS DE CLASIFICACIÓN ARTICULAR (ESTRUCTURAL Y FUNCIONAL)
+                 ========================================================================= -->
+            <section id="tab-criterios" class="module-section space-y-6">
+                <!-- Banner del Módulo 1 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md border border-accent/20">Módulo 1 • Fundamentos Articulares</span>
+                            <h2 class="text-xl font-extrabold text-slate-800 mt-1.5">Criterios de Clasificación Articular</h2>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Definición de articulación y doble criterio de clasificación: estructural (histológico) y funcional (grado de movilidad cinemática).</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-accent-light px-3.5 py-2 rounded-xl border border-accent/20 font-mono text-xs font-bold text-accent">
+                            <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                            <span>Estructura &harr; Función</span>
+                        </div>
+                    </div>
+
+                    <!-- Dos Criterios -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1.5">
+                                <i class="fa-solid fa-microscope text-accent"></i> 1. Criterio Estructural (Histológico)
+                            </div>
+                            <p class="text-[11px] text-slate-600 mb-2">Presencia o ausencia de cavidad sinovial y tipo de tejido conectivo interpuesto:</p>
+                            <ul class="text-[11px] space-y-1 text-slate-700">
+                                <li>• <strong>Fibrosas:</strong> Sin cavidad sinovial; unidas por tejido conectivo denso irregular rico en colágeno.</li>
+                                <li>• <strong>Cartilaginosas:</strong> Sin cavidad sinovial; unidas por cartílago hialino o fibrocartílago.</li>
+                                <li>• <strong>Sinoviales:</strong> Con cavidad articular sinovial, cartílago articular hialino, cápsula y ligamentos.</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="flex items-center gap-2 text-slate-800 font-bold text-xs mb-1.5">
+                                <i class="fa-solid fa-arrows-up-down-left-right text-accent"></i> 2. Criterio Funcional (Cinemático)
+                            </div>
+                            <p class="text-[11px] text-slate-600 mb-2">Clasificación biomecánica según el grado o amplitud de movimiento permitido:</p>
+                            <ul class="text-[11px] space-y-1 text-slate-700">
+                                <li>• <strong>Sinartrosis:</strong> Articulación inmóvil (nulo movimiento; estabilidad absoluta).</li>
+                                <li>• <strong>Anfiartrosis:</strong> Articulación de escaso o leve movimiento (amortiguación elástica).</li>
+                                <li>• <strong>Diartrosis:</strong> Articulación de amplio movimiento libre (mono, bi o poliaxiales).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Matriz Interactiva de Correlación Biomecánica -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                                <i class="fa-solid fa-table-cells-large text-accent"></i>
+                                Laboratorio de Mapeo: Estructura vs. Función Articular
+                            </h3>
+                            <p class="text-xs text-slate-500">Seleccioná cada elemento articular del banco inferior y asignalo a su cuadrante funcional correspondiente.</p>
+                        </div>
+                        <button onclick="resetModule1()" class="text-xs font-semibold text-slate-500 hover:text-accent flex items-center gap-1 self-start sm:self-auto">
+                            <i class="fa-solid fa-rotate-left"></i> Reiniciar Matriz
+                        </button>
+                    </div>
+
+                    <!-- 3 Contenedores de Destino -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                        <!-- Sinartrosis -->
+                        <div onclick="assignSelectedToken('synarthrosis')" class="p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-accent cursor-pointer transition flex flex-col justify-between min-h-[160px] group">
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <span class="font-bold text-xs text-slate-800">Sinartrosis (Inmóvil)</span>
+                                    <span class="text-[10px] font-mono font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Mov: 0°</span>
+                                </div>
+                                <p class="text-[11px] text-slate-500 mb-2">Uniones rígidas para protección o crecimiento óseo.</p>
+                                <div id="drop-synarthrosis" class="flex flex-col gap-1.5 min-h-[50px]"></div>
+                            </div>
+                            <div class="mt-3 text-[11px] text-center font-bold text-slate-700 py-1 bg-white rounded-lg border border-slate-200 group-hover:bg-accent group-hover:text-white transition">
+                                <i class="fa-solid fa-plus mr-1"></i> Asignar aquí
+                            </div>
+                        </div>
+
+                        <!-- Anfiartrosis -->
+                        <div onclick="assignSelectedToken('amphiarthrosis')" class="p-4 rounded-xl border-2 border-accent/20 bg-accent-light/40 hover:border-accent cursor-pointer transition flex flex-col justify-between min-h-[160px] group">
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <span class="font-bold text-xs text-accent">Anfiartrosis (Escaso Mov.)</span>
+                                    <span class="text-[10px] font-mono font-bold bg-accent text-white px-2 py-0.5 rounded">Mov: Leve</span>
+                                </div>
+                                <p class="text-[11px] text-slate-500 mb-2">Uniones elásticas para amortiguar y transmitir cargas axiales.</p>
+                                <div id="drop-amphiarthrosis" class="flex flex-col gap-1.5 min-h-[50px]"></div>
+                            </div>
+                            <div class="mt-3 text-[11px] text-center font-bold text-accent py-1 bg-white rounded-lg border border-accent/30 group-hover:bg-accent group-hover:text-white transition">
+                                <i class="fa-solid fa-plus mr-1"></i> Asignar aquí
+                            </div>
+                        </div>
+
+                        <!-- Diartrosis -->
+                        <div onclick="assignSelectedToken('diarthrosis')" class="p-4 rounded-xl border-2 border-emerald-200 bg-emerald-50/40 hover:border-emerald-600 cursor-pointer transition flex flex-col justify-between min-h-[160px] group">
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <span class="font-bold text-xs text-emerald-900">Diartrosis (Amplio Mov.)</span>
+                                    <span class="text-[10px] font-mono font-bold bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded">Mov: Libre</span>
+                                </div>
+                                <p class="text-[11px] text-slate-500 mb-2">Articulaciones sinoviales con cavidad y amplio rango cinemático.</p>
+                                <div id="drop-diarthrosis" class="flex flex-col gap-1.5 min-h-[50px]"></div>
+                            </div>
+                            <div class="mt-3 text-[11px] text-center font-bold text-emerald-800 py-1 bg-white rounded-lg border border-emerald-300 group-hover:bg-emerald-600 group-hover:text-white transition">
+                                <i class="fa-solid fa-plus mr-1"></i> Asignar aquí
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fichas de Articulaciones por Clasificar -->
+                    <div class="space-y-1.5 pt-2">
+                        <span class="text-xs font-bold text-slate-700 uppercase tracking-wide">Ejemplos Anatómicos Pendientes (Haz clic para seleccionar y luego asigna en el cuadrante):</span>
+                        <div id="classification-tokens-pool" class="flex flex-wrap gap-2 p-3.5 rounded-xl bg-slate-50 border border-dashed border-slate-300 min-h-[58px] items-center">
+                            <!-- Generado dinámicamente por JS -->
+                        </div>
+                    </div>
+
+                    <div id="m1-feedback" class="hidden p-3.5 rounded-xl text-xs leading-relaxed"></div>
+                </div>
+            </section>
+
+            <!-- =========================================================================
+                 MÓDULO 2: LABORATORIO DE ARTICULACIONES FIBROSAS
+                 ========================================================================= -->
+            <section id="tab-fibrosas" class="module-section space-y-6 hidden">
+                <!-- Banner del Módulo 2 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md border border-accent/20">Módulo 2 • Tejido Conectivo Denso</span>
+                            <h2 class="text-xl font-extrabold text-slate-800 mt-1.5">Laboratorio de Articulaciones Fibrosas</h2>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Ausencia absoluta de cavidad sinovial y unión ósea directa mediante tejido conectivo denso irregular (colágeno).</p>
+                        </div>
+                        <!-- Botonera Selectora de los 3 Subtipos -->
+                        <div class="flex gap-1.5 p-1 bg-slate-100 rounded-xl">
+                            <button onclick="selectFibrousType('sutura')" id="btn-fib-sutura" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-accent text-white shadow-xs transition">1. Suturas</button>
+                            <button onclick="selectFibrousType('sindesmosis')" id="btn-fib-sindesmosis" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-200 transition">2. Sindesmosis</button>
+                            <button onclick="selectFibrousType('membrana')" id="btn-fib-membrana" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-200 transition">3. Membranas</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visor Anatómico Vectorial y Ficha Kinésica -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Visor SVG Anatómico -->
+                    <div class="lg:col-span-7 bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span id="fib-badge" class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-accent-light text-accent border border-accent/20">Sinartrosis en el Adulto</span>
+                                <h3 id="fib-specimen-title" class="text-lg font-bold text-slate-800 mt-1">Sutura Coronal y Sagital</h3>
+                            </div>
+                            <span id="fib-display-tag" class="text-xs font-mono text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg font-semibold">Bóveda Craneal</span>
+                        </div>
+
+                        <!-- Canvas/SVG Viewport -->
+                        <div class="bg-slate-900 rounded-xl p-4 flex items-center justify-center border border-slate-800 min-h-[240px]" id="fibrous-svg-viewport">
+                            <!-- SVG dinámico inyectado por JS -->
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-600 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
+                            <span>Distancia entre extremos óseos: <strong id="fib-distance-tag" class="text-accent">&lt; 0.5 mm</strong></span>
+                            <span>Tensión colágena: <strong id="fib-tension-tag" class="text-slate-800">Máxima rigidez</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Ficha Descriptiva y Relevancia Kinésica -->
+                    <div class="lg:col-span-5 bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+                            <div>
+                                <strong class="text-slate-800 text-xs font-bold block mb-1">Tejido Conectivo Interpuesto:</strong>
+                                <p id="fib-specimen-tissue" class="bg-slate-50 p-2.5 rounded-lg border border-slate-200">Fina capa de tejido conectivo denso irregular con fibras colágenas fuertemente ancladas al periostio (fibras de Sharpey).</p>
+                            </div>
+                            <div>
+                                <strong class="text-slate-800 text-xs font-bold block mb-1">Comportamiento Mecánico:</strong>
+                                <p id="fib-specimen-functional" class="bg-slate-50 p-2.5 rounded-lg border border-slate-200">En la infancia permite amoldamiento de la cabeza en el parto y expansión del encéfalo; en el adulto se consolida como sinartrosis estricta.</p>
+                            </div>
+                            <div>
+                                <strong class="text-slate-800 text-xs font-bold block mb-1 text-accent">Aplicación Kinésica / Clínica:</strong>
+                                <p id="fib-specimen-clinical" class="bg-accent-light/60 text-slate-800 p-2.5 rounded-lg border border-accent/20">En kinesiología se analiza la flexibilidad sutural; la fusión prematura patológica se denomina craneosinostosis.</p>
+                            </div>
+                        </div>
+
+                        <button onclick="testFibrousKnowledge()" class="w-full py-2 bg-accent text-white font-semibold rounded-xl text-xs hover:bg-accent-hover transition shadow-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-lightbulb"></i> Consultar Clave Kinésica del Espécimen
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================================
+                 MÓDULO 3: ESTACIÓN DE OSIFICACIÓN Y EVOLUCIÓN A SINOSTOSIS
+                 ========================================================================= -->
+            <section id="tab-sinostosis" class="module-section space-y-6 hidden">
+                <!-- Banner del Módulo 3 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md border border-accent/20">Módulo 3 • Ontogenia y Fusión Ósea</span>
+                            <h2 class="text-xl font-extrabold text-slate-800 mt-1.5">Estación de Osificación y Sinostosis</h2>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">La sinostosis es la transformación definitiva de una articulación previa (fibrosa o cartilaginosa) en una fusión ósea completa e inmóvil.</p>
+                        </div>
+                        <span class="text-xs font-mono bg-accent-light text-accent px-3 py-1.5 rounded-xl border border-accent/20 font-bold">
+                            Fusión Ósea Completa
+                        </span>
+                    </div>
+
+                    <!-- Slider de Línea de Tiempo Cronológica -->
+                    <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-700">
+                                Evolución Cronológica del Sujeto:
+                            </label>
+                            <span id="age-label" class="text-xs font-mono font-bold text-accent bg-white px-3 py-1 rounded-lg border border-accent/20">
+                                Recién Nacido (0 años)
+                            </span>
+                        </div>
+                        <input id="age-slider" type="range" min="0" max="3" value="0" step="1" oninput="updateOssificationTimeline(this.value)">
+                        <div class="flex justify-between text-[11px] font-semibold text-slate-500 pt-1">
+                            <span>Recién Nacido</span>
+                            <span>Infancia (2-6 a)</span>
+                            <span>Adolescencia (12-16 a)</span>
+                            <span>Adulto (25+ a)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparador Visual Paralelo: Sutura vs. Cartílago Epifisario -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Caso A: Sutura Craneal -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                            <span class="text-xs font-bold text-slate-800">A. De Sutura Fibrosa a Sinostosis</span>
+                            <span id="status-cranial" class="text-[10px] bg-accent-light text-accent font-semibold px-2 py-0.5 rounded border border-accent/20">Fontanelas abiertas</span>
+                        </div>
+                        <div class="h-44 bg-slate-900 rounded-xl flex items-center justify-center p-3 relative border border-slate-800" id="cranial-visualizer">
+                            <!-- Inyectado dinámicamente -->
+                        </div>
+                        <p id="cranial-desc" class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            Fontanelas membranosas amplias que permiten flexibilidad y adaptabilidad en el canal de parto.
+                        </p>
+                    </div>
+
+                    <!-- Caso B: Fisis Epifisaria -->
+                    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col justify-between space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                            <span class="text-xs font-bold text-slate-800">B. De Sincondrosis a Línea Epifisaria</span>
+                            <span id="status-epiphyseal" class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded border border-emerald-200">Cartílago hialino activo</span>
+                        </div>
+                        <div class="h-44 bg-slate-900 rounded-xl flex items-center justify-center p-3 relative border border-slate-800" id="epiphyseal-visualizer">
+                            <!-- Inyectado dinámicamente -->
+                        </div>
+                        <p id="epiphyseal-desc" class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            Sincondrosis temporal constituida por cartílago hialino entre la epífisis y la diáfisis para el crecimiento en longitud.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Conclusión Kinésica Oficial -->
+                <div class="p-3.5 rounded-xl bg-accent-light border border-accent/20 text-xs text-slate-800 flex items-start gap-2.5">
+                    <i class="fa-solid fa-lightbulb text-accent text-base mt-0.5"></i>
+                    <div>
+                        <strong class="font-bold">Regla de Oro en Kinesiología:</strong> Tanto una articulación fibrosa (sutura) como una cartilaginosa (sincondrosis) pueden transformarse en una <strong>sinostosis</strong>. Al concluir la osificación, la movilidad cesa por completo y el espacio interóseo desaparece anatómica y funcionalmente.
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================================
+                 MÓDULO 4: TALLER DE ARTICULACIONES CARTILAGINOSAS (SINCONDROSIS VS. SÍNFISIS)
+                 ========================================================================= -->
+            <section id="tab-cartilaginosas" class="module-section space-y-6 hidden">
+                <!-- Banner del Módulo 4 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md border border-accent/20">Módulo 4 • Hialino vs. Fibrocartílago</span>
+                            <h2 class="text-xl font-extrabold text-slate-800 mt-1.5">Taller: Sincondrosis vs. Sínfisis</h2>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Sin cavidad sinovial. Unión mediante cartílago hialino (sincondrosis inmóvil) o disco central de fibrocartílago en la línea media (sínfisis semimóvil).</p>
+                        </div>
+                        <!-- Pestañas de Comparación -->
+                        <div class="flex gap-1.5 p-1 bg-slate-100 rounded-xl">
+                            <button onclick="toggleCartilageView('sincondrosis')" id="btn-cart-sincondrosis" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-accent text-white shadow-xs transition">1. Sincondrosis</button>
+                            <button onclick="toggleCartilageView('sinfisis')" id="btn-cart-sinfisis" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-200 transition">2. Sínfisis</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prensa Biomecánica de Cargas Kinésicas -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-800" id="cartilage-model-title">
+                                Modelo Biomecánico: Sincondrosis (Cartílago Hialino Puro)
+                            </h3>
+                            <p class="text-xs text-slate-500">Desplazá la prensa de carga axial para observar la respuesta elástica o rigidez del tejido.</p>
+                        </div>
+                        <span id="cartilage-mov-badge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">Sinartrosis (Inmóvil)</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <!-- Canvas / SVG de Cargas -->
+                        <div class="lg:col-span-7 bg-slate-900 rounded-xl p-4 flex flex-col items-center justify-center min-h-[250px] relative border border-slate-800">
+                            <div id="cartilage-interactive-svg" class="w-full flex items-center justify-center">
+                                <!-- Generado por JS -->
+                            </div>
+                            <div class="w-full flex items-center justify-between text-xs font-mono text-slate-300 mt-3 pt-2 border-t border-slate-800">
+                                <span>Carga Axial Aplicada: <strong id="load-value" class="text-accent">0 N</strong></span>
+                                <span>Deformación Viscoelástica: <strong id="strain-value" class="text-white">0.0 mm</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Controles de Prensa y Propiedades -->
+                        <div class="lg:col-span-5 space-y-3.5">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                                <label class="text-xs font-bold text-slate-700 block">Prensa de Compresión Axial (0 a 1250 N):</label>
+                                <input id="compression-slider" type="range" min="0" max="100" value="0" oninput="applyCartilageLoad(this.value)">
+                                <div class="flex justify-between text-[10px] text-slate-400 font-semibold">
+                                    <span>Reposo (0 N)</span>
+                                    <span>Carga Media</span>
+                                    <span>Compresión Máx (1250 N)</span>
+                                </div>
+                            </div>
+
+                            <div class="text-xs space-y-2 text-slate-600">
+                                <div id="cart-feature-1" class="p-2.5 bg-slate-50 rounded-lg border border-slate-200">
+                                    <strong>Histología:</strong> Cartílago hialino puro avascular. Articulación sinartrósica rígida; en jóvenes deportistas no tolera fuerzas de cizallamiento extremas.
+                                </div>
+                                <div id="cart-feature-2" class="p-2.5 bg-accent-light/60 rounded-lg border border-accent/20 text-slate-800">
+                                    <strong>Ejemplos Clásicos:</strong> Placa de crecimiento epifisaria y unión de la 1.ª costilla con el manubrio del esternón.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =========================================================================
+                 MÓDULO 5: CASOS CLÍNICOS KINESIOLÓGICOS Y RAZONAMIENTO ARTICULAR
+                 ========================================================================= -->
+            <section id="tab-casos" class="module-section space-y-6 hidden">
+                <!-- Banner del Módulo 5 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                    <span class="text-xs font-bold uppercase tracking-wider text-accent bg-accent-light px-2.5 py-1 rounded-md border border-accent/20">Módulo 5 • Integración Kinésica</span>
+                    <h2 class="text-xl font-extrabold text-slate-800 mt-1.5">Taller de Casos Clínicos y Razonamiento Biomecánico</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5">Analiza escenarios de consulta kinésica aplicando los conceptos de articulaciones fibrosas, cartilaginosas y sinostosis con retroalimentación inmediata.</p>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <!-- Caso 1 -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 1: Esguince Alto de Tobillo en un Futbolista</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Articulación Fibrosa</span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            Un futbolista sufre una rotación externa forzada del pie con dolor intenso por encima de la mortaja del tobillo. El informe kinésico sospecha un <em>esguince alto</em> por daño de la sindesmosis tibioperonea distal:
+                        </p>
+                        <strong class="block text-slate-800">¿Cómo se clasifica estructural y funcionalmente esta articulación afectada?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseKine(1, 'A')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                A) Articulación fibrosa sin cavidad sinovial, clasificada funcionalmente como anfiartrosis por permitir leve movimiento elástico mediante bandas ligamentosas.
+                            </button>
+                            <button onclick="checkCaseKine(1, 'B')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                B) Articulación sinovial de tipo diartrosis con amplia cavidad articular y cartílago hialino de deslizamiento.
+                            </button>
+                        </div>
+                        <div id="feedback-kine-1" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+
+                    <!-- Caso 2 -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 2: Pubalgia y Dolor en la Línea Media Pélvica</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Articulación Cartilaginosa</span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            Una paciente corredora de fondo en período posparto refiere molestias en la zona púbica anterior durante la fase de apoyo de la marcha. El kinesiólogo evalúa la <strong>sínfisis del pubis</strong>:
+                        </p>
+                        <strong class="block text-slate-800">¿Qué composición histológica y localización definen a una sínfisis?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseKine(2, 'A')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                A) Se sitúa en la línea media corporal; sus extremos óseos están cubiertos por cartílago hialino y posee un disco central ancho de fibrocartílago (anfiartrosis).
+                            </button>
+                            <button onclick="checkCaseKine(2, 'B')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                B) Es una sincondrosis lateral unida exclusivamente por cartílago hialino sinartrósico que osifica obligatoriamente antes de los 20 años.
+                            </button>
+                        </div>
+                        <div id="feedback-kine-2" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+
+                    <!-- Caso 3 -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 3: Cartílago de Crecimiento vs. Línea Epifisaria</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Osificación & Sinostosis</span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            En la radiografía de rodilla de un paciente de 15 años se aprecia una banda radiolúcida entre la epífisis y la diáfisis femoral, mientras que en un adulto de 26 años esa zona aparece como una línea ósea continua:
+                        </p>
+                        <strong class="block text-slate-800">¿Qué proceso articular ocurrió entre ambas etapas etarias?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseKine(3, 'A')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                A) La sincondrosis de cartílago hialino fue sustituida por tejido óseo completo, transformándose en una sinostosis inmóvil.
+                            </button>
+                            <button onclick="checkCaseKine(3, 'B')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                B) El cartílago hialino se transformó en una diartrosis sinovial para permitir el movimiento de la rodilla.
+                            </button>
+                        </div>
+                        <div id="feedback-kine-3" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+
+                    <!-- Caso 4 -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 4: Amortiguación Axial y Discos Intervertebrales</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Biomecánica de la Columna</span>
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            Durante actividades de salto o carga de peso sobre la columna vertebral, las vértebras absorben fuerzas compresivas masivas sin colapso óseo directo:
+                        </p>
+                        <strong class="block text-slate-800">¿Qué tipo de articulación conforma cada cuerpo vertebral contiguo con su disco intervertebral?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseKine(4, 'A')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                A) Una sínfisis (articulación cartilaginosa anfiartrosis) con disco de fibrocartílago diseñado para distribuir presiones hidrostáticas axiales.
+                            </button>
+                            <button onclick="checkCaseKine(4, 'B')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-accent text-left transition bg-slate-50">
+                                B) Una membrana interósea aponeurótica similar a la que une el cúbito y el radio.
+                            </button>
+                        </div>
+                        <div id="feedback-kine-4" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal: Guía de Uso del Simulador -->
+    <div id="modal-tutorial" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white max-w-3xl w-full rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="bg-accent p-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    <h3 class="font-bold text-base">Guía de Uso del Simulador y Orientación Pedagógica</h3>
+                </div>
+                <button onclick="closeTutorial()" class="text-white hover:text-gray-200 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-5 text-xs md:text-sm text-gray-600 custom-scroll leading-relaxed">
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1 text-accent flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye"></i> 1. Propósito Tecnopedagógico
+                    </h4>
+                    <p>
+                        Este simulador interactivo está desarrollado para estudiantes del curso de ingreso a la <strong>Licenciatura en Kinesiología y Fisiatría (Facultad de Ciencias Médicas - Universidad Católica de Cuyo)</strong>. Su meta es consolidar los <strong>criterios de clasificación articular</strong>, la histología y cinemática de las <strong>articulaciones fibrosas</strong> (suturas, sindesmosis, membranas interóseas), el proceso ontogénico de <strong>sinostosis</strong> y las <strong>articulaciones cartilaginosas</strong> (sincondrosis de cartílago hialino vs. sínfisis con fibrocartílago en la línea media).
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-2 text-accent flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i> 2. Guía Detallada de Módulos y Herramientas Interactivas
+                    </h4>
+                    
+                    <div class="space-y-3.5">
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-1.5">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="fa-solid fa-table-cells-large"></i> Módulo 1: Criterios de Clasificación Articular
+                            </span>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                • <strong>Matriz de Mapeo Biomecánico:</strong> Arrastrá o asigná especímenes anatómicos a sus cuadrantes correspondientes (Sinartrosis, Anfiartrosis o Diartrosis), verificando en tiempo real la correlación histología-movimiento.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-1.5">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="fa-solid fa-dna"></i> Módulo 2: Laboratorio de Articulaciones Fibrosas
+                            </span>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                • <strong>Visor Anatómico Vectorial SVG:</strong> Conmutá entre suturas craneales (fibras de Sharpey cortas), sindesmosis tibioperonea (bandas ligamentosas) y membranas interóseas (láminas oblicuas continuas de transferencia de fuerza).
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-1.5">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="fa-solid fa-hourglass-half"></i> Módulo 3: Estación de Sinostosis y Osificación
+                            </span>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                • <strong>Línea de Tiempo Cronológica:</strong> Desplazá el control temporal desde recién nacido hasta la adultez para visualizar simultáneamente cómo osifican las suturas del cráneo y cómo el cartílago de crecimiento epifisario se convierte en línea epifisaria.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-1.5">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="fa-solid fa-cubes-stacked"></i> Módulo 4: Articulaciones Cartilaginosas
+                            </span>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                • <strong>Prensa Biomecánica de Cargas:</strong> Compará una sincondrosis (hialino rígido) con una sínfisis (disco de fibrocartílago en línea media) aplicando cargas axiales de hasta 1250 N con deformación viscoelástica medible.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-1.5">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="fa-solid fa-stethoscope"></i> Módulo 5: Casos Clínicos Kinesiológicos
+                            </span>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                • <strong>Razonamiento Asistencial:</strong> 4 escenarios clínicos (esguince alto de sindesmosis, pubalgia por sínfisis púbica, fisis epifisaria deportiva e impacto en discos vertebrales) con feedback explicativo inmediato sin penalizaciones.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-1.5">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="fa-solid fa-book-bookmark"></i> Botón Compendio (Barra Superior)
+                            </span>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                • Consultá en cualquier momento las tablas teóricas con clasificaciones estructurales, funcionales y ejemplos anatómicos del temario oficial.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1 text-accent flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb"></i> 3. Navegación Libre y Aprendizaje Autónomo
+                    </h4>
+                    <p>
+                        El simulador respeta los estándares institucionales de la UCCuyo: sin cronómetros restrictivos, sonidos invasivos ni notas punitivas. Podés recorrer libremente cada módulo las veces que lo desees para afianzar tu criterio kinésico.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 border-t border-gray-100 flex justify-end">
+                <button onclick="closeTutorial()" class="px-4 py-2 bg-accent text-white rounded-xl text-xs font-semibold hover:bg-accent-hover transition">
+                    Entendido, comenzar exploración
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Compendio Teórico de Artrología -->
+    <div id="modal-compendio" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white max-w-2xl w-full rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="bg-accent p-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark text-xl"></i>
+                    <h3 class="font-bold text-base">Compendio Teórico: Artrología & Biomecánica</h3>
+                </div>
+                <button onclick="closeCompendioModal()" class="text-white hover:text-gray-200 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-4 text-xs text-gray-700 custom-scroll leading-relaxed">
+                <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                    <h4 class="font-bold text-accent text-xs uppercase mb-1">1. Clasificación Articular por Movilidad (Funcional)</h4>
+                    <ul class="space-y-1 text-[11px] text-gray-700">
+                        <li>• <strong>Sinartrosis:</strong> Inmóvil (suturas craneales adultas, sincondrosis epifisarias, sinostosis).</li>
+                        <li>• <strong>Anfiartrosis:</strong> Escaso o leve movimiento (sínfisis del pubis, discos intervertebrales, sindesmosis).</li>
+                        <li>• <strong>Diartrosis:</strong> Movimiento amplio y libre con cavidad sinovial (hombro, cadera, rodilla, codo).</li>
+                    </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                    <h4 class="font-bold text-accent text-xs uppercase mb-1">2. Articulaciones Fibrosas (Sin Cavidad Sinovial)</h4>
+                    <ul class="space-y-1 text-[11px] text-gray-700">
+                        <li>• <strong>Suturas:</strong> Huesos del cráneo unidos por tejido conectivo denso irregular; osifican a sinostosis.</li>
+                        <li>• <strong>Sindesmosis:</strong> Huesos a mayor distancia unidos por ligamentos (ej. tibioperonea distal).</li>
+                        <li>• <strong>Membranas Interóseas:</strong> Láminas de tejido conectivo entre huesos paralelos (radio-cúbito y tibia-peroné).</li>
+                    </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                    <h4 class="font-bold text-accent text-xs uppercase mb-1">3. Articulaciones Cartilaginosas</h4>
+                    <ul class="space-y-1 text-[11px] text-gray-700">
+                        <li>• <strong>Sincondrosis:</strong> Unidas por cartílago hialino (ej. cartílago epifisario; sinartrosis temporal que osifica a sinostosis).</li>
+                        <li>• <strong>Sínfisis:</strong> Ubicadas en la línea media corporal; extremos con cartílago hialino y disco intermedio de fibrocartílago (ej. sínfisis púbica, discos vertebrales, manubrio-esternal; anfiartrosis).</li>
+                    </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-accent-light border border-accent/20 text-gray-800">
+                    <h4 class="font-bold text-accent text-xs uppercase mb-1">4. Concepto de Sinostosis</h4>
+                    <p class="text-[11px] leading-relaxed text-gray-600">
+                        Fusión ósea completa de dos huesos contiguos previamente unidos por tejido fibroso o cartilaginoso. El tejido intermedio se reabsorbe y se forma hueso continuo sin movilidad (ej. suturas adultas cerradas, línea epifisaria en adultos).
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gray-50 border-t border-gray-100 flex justify-end">
+                <button onclick="closeCompendioModal()" class="px-4 py-2 bg-accent text-white rounded-xl text-xs font-semibold hover:bg-accent-hover transition">
+                    Cerrar Compendio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de Página Institucional Oficial -->
+    <footer class="bg-white border-t border-gray-200 py-3 text-center text-xs text-gray-500 font-medium">
+        Desarrollado por vesalio - Todos los derechos reservados
+    </footer>
+
+    <!-- Lógica de la Aplicación en JavaScript -->
+    <script>
+        // ==========================================
+        // ESTADO GLOBAL Y VARIABLES DEL SIMULADOR
+        // ==========================================
+        const state = {
+            selectedToken: null,
+            currentFibrousSpecimen: 'sutura',
+            cartilageView: 'sincondrosis',
+            mod1Assigned: {
+                synarthrosis: [],
+                amphiarthrosis: [],
+                diarthrosis: []
+            },
+            tokensPool: [
+                { id: 'sutura-coronal', target: 'synarthrosis', name: 'Sutura coronal (adulto)', icon: 'fa-skull', explanation: 'Las suturas del cráneo están unidas por tejido conectivo denso y, en el adulto, no permiten movimiento alguno (sinartrosis).' },
+                { id: 'sinfisis-pubis', target: 'amphiarthrosis', name: 'Sínfisis del pubis', icon: 'fa-child', explanation: 'La sínfisis es cartilaginosa con fibrocartílago intermedio y permite un movimiento leve esencial para la marcha y el parto (anfiartrosis).' },
+                { id: 'cartilago-epifisario', target: 'synarthrosis', name: 'Fisis epifisaria (hialino)', icon: 'fa-bone', explanation: 'La sincondrosis epifisaria es una articulación cartilaginosa temporal (hialino) sin movimiento (sinartrosis) destinada al crecimiento óseo.' },
+                { id: 'disco-vertebral', target: 'amphiarthrosis', name: 'Disco intervertebral', icon: 'fa-arrows-split-up-and-left', explanation: 'Los discos intervertebrales son sínfisis de fibrocartílago que otorgan absorción de cargas y pequeños rangos angulares (anfiartrosis).' },
+                { id: 'art-coxofemoral', target: 'diarthrosis', name: 'Art. Coxofemoral (cadera)', icon: 'fa-person-walking', explanation: 'La articulación de la cadera posee cápsula y cavidad sinovial con cartílago hialino, siendo diartrosis triaxial de amplio movimiento.' },
+                { id: 'sindesmosis-tibioperonea', target: 'amphiarthrosis', name: 'Sindesmosis tibioperonea', icon: 'fa-shoe-prints', explanation: 'Unida por ligamentos distales; permite un pequeño desplazamiento amortiguador durante la flexoextensión del tobillo (anfiartrosis).' }
+            ]
+        };
+
+        // Navegación lateral entre pestañas
+        function switchTab(targetId) {
+            document.querySelectorAll('.module-section').forEach(sec => sec.classList.add('hidden'));
+            const target = document.getElementById(targetId);
+            if (target) target.classList.remove('hidden');
+
+            const btnIds = ['btn-tab-criterios', 'btn-tab-fibrosas', 'btn-tab-sinostosis', 'btn-tab-cartilaginosas', 'btn-tab-casos'];
+            btnIds.forEach(id => {
+                const btn = document.getElementById(id);
+                if (!btn) return;
+                btn.className = "text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition";
+            });
+
+            const activeBtn = document.getElementById('btn-' + targetId);
+            if (activeBtn) {
+                activeBtn.className = "bg-accent text-white flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-semibold transition shadow-sm";
+            }
+        }
+
+        // ==========================================
+        // MÓDULO 1: MATRIZ DE CLASIFICACIÓN
+        // ==========================================
+        function renderTokensPool() {
+            const pool = document.getElementById('classification-tokens-pool');
+            if (!pool) return;
+            pool.innerHTML = '';
+
+            const assignedIds = new Set([
+                ...state.mod1Assigned.synarthrosis,
+                ...state.mod1Assigned.amphiarthrosis,
+                ...state.mod1Assigned.diarthrosis
+            ]);
+
+            const unassigned = state.tokensPool.filter(t => !assignedIds.has(t.id));
+
+            if (unassigned.length === 0) {
+                pool.innerHTML = '<span class="text-xs text-emerald-700 font-semibold flex items-center gap-1.5"><i class="fa-solid fa-circle-check"></i> ¡Todos los ejemplos articulares han sido clasificados correctamente!</span>';
+            } else {
+                unassigned.forEach(item => {
+                    const btn = document.createElement('button');
+                    const isSelected = state.selectedToken && state.selectedToken.id === item.id;
+                    btn.className = 'token-item px-3 py-1.5 rounded-lg border text-xs font-semibold flex items-center gap-1.5 transition ' +
+                        (isSelected ? 'bg-accent text-white border-accent shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:border-accent');
+                    btn.innerHTML = '<i class="fa-solid ' + item.icon + ' ' + (isSelected ? 'text-white' : 'text-accent') + '"></i> ' + item.name;
+                    btn.onclick = () => {
+                        state.selectedToken = item;
+                        renderTokensPool();
+                    };
+                    pool.appendChild(btn);
+                });
+            }
+
+            ['synarthrosis', 'amphiarthrosis', 'diarthrosis'].forEach(cat => {
+                const drop = document.getElementById('drop-' + cat);
+                if (!drop) return;
+                drop.innerHTML = '';
+                state.mod1Assigned[cat].forEach(id => {
+                    const obj = state.tokensPool.find(t => t.id === id);
+                    if (obj) {
+                        const tag = document.createElement('div');
+                        tag.className = 'w-full text-left text-xs bg-white border border-slate-200 text-slate-800 p-2 rounded-lg font-medium shadow-2xs flex items-center justify-between';
+                        tag.innerHTML = '<span><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i>' + obj.name + '</span><i class="fa-solid fa-circle-info text-accent cursor-pointer" title="' + obj.explanation + '"></i>';
+                        drop.appendChild(tag);
+                    }
+                });
+            });
+        }
+
+        function assignSelectedToken(targetCategory) {
+            const fb = document.getElementById('m1-feedback');
+            if (!state.selectedToken) {
+                if (fb) {
+                    fb.classList.remove('hidden');
+                    fb.className = "p-3 rounded-xl text-xs bg-amber-50 text-amber-900 border border-amber-200";
+                    fb.innerHTML = "<strong>Selección requerida:</strong> Haz clic primero en uno de los elementos anatómicos del banco inferior y luego pulsa en el cuadrante funcional deseado.";
+                }
+                return;
+            }
+
+            const current = state.selectedToken;
+            if (current.target === targetCategory) {
+                state.mod1Assigned[targetCategory].push(current.id);
+                state.selectedToken = null;
+                renderTokensPool();
+
+                if (fb) {
+                    fb.classList.remove('hidden');
+                    fb.className = "p-3 rounded-xl text-xs bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    fb.innerHTML = "<strong>¡Excelente deducción!</strong> " + current.explanation;
+                }
+            } else {
+                if (fb) {
+                    fb.classList.remove('hidden');
+                    fb.className = "p-3 rounded-xl text-xs bg-rose-50 text-rose-900 border border-rose-200";
+                    fb.innerHTML = "<strong>Ubicación incorrecta:</strong> Revisa el tejido interpuesto (fibroso denso, cartílago o cavidad sinovial) y la movilidad kinésica de <em>" + current.name + "</em>.";
+                }
+            }
+        }
+
+        function resetModule1() {
+            state.selectedToken = null;
+            state.mod1Assigned = { synarthrosis: [], amphiarthrosis: [], diarthrosis: [] };
+            const fb = document.getElementById('m1-feedback');
+            if (fb) fb.classList.add('hidden');
+            renderTokensPool();
+        }
+
+        // ==========================================
+        // MÓDULO 2: ARTICULACIONES FIBROSAS
+        // ==========================================
+        const fibrousData = {
+            sutura: {
+                title: "Suturas Craneales (Serrada / Dentada)",
+                badge: "Sinartrosis en Adultos",
+                tissue: "Fina capa de tejido conectivo denso irregular con fibras colágenas cortas fuertemente entrelazadas (fibras de Sharpey).",
+                functional: "En la infancia facilita el parto y el crecimiento del encéfalo; se osifica en la adultez transformándose en sinostosis inmóvil.",
+                clinical: "En kinesiología se analiza la flexibilidad sutural; la fusión prematura patológica se denomina craneosinostosis.",
+                distance: "< 0.5 mm (íntimo contacto)",
+                tension: "Resistencia máxima a tracción",
+                svgTag: "Bóveda Craneal"
+            },
+            sindesmosis: {
+                title: "Sindesmosis Tibioperonea Distal",
+                badge: "Anfiartrosis (Escaso Movimiento)",
+                tissue: "Ligamentos tibioperoneos anterior y posterior compuestos por haces de tejido conectivo denso irregular.",
+                functional: "Permite una ligera separación amortiguadora de la mortaja tibioperonea durante la dorsiflexión del tobillo.",
+                clinical: "Kinésicamente vital: La lesión de esta sindesmosis corresponde al 'esguince alto de tobillo', demandando rehabilitación prolongada para estabilizar la marcha.",
+                distance: "4 a 8 mm (mayor distancia)",
+                tension: "Estabilizador dinámico de carga",
+                svgTag: "Mortaja Tibioperonea"
+            },
+            membrana: {
+                title: "Membrana Interósea Antebraquial y Crural",
+                badge: "Anfiartrosis de Transmisión",
+                tissue: "Extensa lámina aponeurótica de tejido conectivo denso irregular con orientación oblicua entre diáfisis paralelas.",
+                functional: "Conecta firmemente radio-cúbito y tibia-peroné, proveyendo superficie para inserciones musculares y transfiriendo cargas mecánicas.",
+                clinical: "En kinesiología: En una caída sobre la mano, la membrana interósea transfiere fuerzas ascendentes desde el radio hacia el cúbito, protegiendo el codo.",
+                distance: "15 a 25 mm (lámina interósea continua)",
+                tension: "Transmisor vector de fuerzas oblicuas",
+                svgTag: "Radio-Cúbito / Tibia-Peroné"
+            }
+        };
+
+        function selectFibrousType(type) {
+            state.currentFibrousSpecimen = type;
+            ['sutura', 'sindesmosis', 'membrana'].forEach(t => {
+                const btn = document.getElementById('btn-fib-' + t);
+                if (!btn) return;
+                if (t === type) {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-accent text-white shadow-xs transition";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-200 transition";
+                }
+            });
+
+            const info = fibrousData[type];
+            document.getElementById('fib-specimen-title').textContent = info.title;
+            document.getElementById('fib-badge').textContent = info.badge;
+            document.getElementById('fib-specimen-tissue').textContent = info.tissue;
+            document.getElementById('fib-specimen-functional').textContent = info.functional;
+            document.getElementById('fib-specimen-clinical').textContent = info.clinical;
+            document.getElementById('fib-distance-tag').textContent = info.distance;
+            document.getElementById('fib-tension-tag').textContent = info.tension;
+            document.getElementById('fib-display-tag').textContent = info.svgTag;
+
+            renderFibrousSVG(type);
+        }
+
+        function renderFibrousSVG(type) {
+            const container = document.getElementById('fibrous-svg-viewport');
+            if (!container) return;
+
+            if (type === 'sutura') {
+                container.innerHTML = `
+                    <svg viewBox="0 0 320 180" class="w-full max-w-[280px] h-auto">
+                        <path d="M 30,30 L 130,30 L 140,50 L 125,70 L 145,90 L 130,110 L 145,130 L 130,150 L 30,150 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2.5" />
+                        <text x="50" y="95" fill="#475569" font-size="11" font-weight="bold">Parietal Izq.</text>
+                        <path d="M 290,30 L 190,30 L 180,50 L 195,70 L 175,90 L 190,110 L 175,130 L 190,150 L 290,150 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2.5" />
+                        <text x="210" y="95" fill="#475569" font-size="11" font-weight="bold">Parietal Der.</text>
+                        <path d="M 130,30 Q 160,40 190,30 M 140,50 Q 160,50 180,50 M 125,70 Q 160,75 195,70 M 145,90 Q 160,90 175,90 M 130,110 Q 160,115 190,110 M 145,130 Q 160,130 175,130 M 130,150 Q 160,150 190,150" stroke="#436600" stroke-width="3" stroke-linecap="round" stroke-dasharray="3,2" />
+                        <circle cx="160" cy="90" r="14" fill="#436600" fill-opacity="0.3" stroke="#659b00" stroke-width="1.5" />
+                        <text x="160" y="16" fill="#84c400" font-size="10" text-anchor="middle" font-weight="bold">Interdigitación Sutural Estrecha</text>
+                    </svg>`;
+            } else if (type === 'sindesmosis') {
+                container.innerHTML = `
+                    <svg viewBox="0 0 320 180" class="w-full max-w-[280px] h-auto">
+                        <rect x="30" y="25" width="100" height="130" rx="8" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2.5" />
+                        <text x="60" y="95" fill="#334155" font-size="12" font-weight="bold">Tibia Distal</text>
+                        <rect x="200" y="40" width="75" height="115" rx="8" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2.5" />
+                        <text x="215" y="95" fill="#334155" font-size="12" font-weight="bold">Peroné</text>
+                        <polygon points="130,50 200,60 200,80 130,70" fill="#436600" fill-opacity="0.75" stroke="#659b00" stroke-width="1.5" />
+                        <polygon points="130,110 200,120 200,138 130,130" fill="#436600" fill-opacity="0.75" stroke="#659b00" stroke-width="1.5" />
+                        <text x="165" y="45" fill="#84c400" font-size="9" text-anchor="middle" font-weight="bold">Lig. Tibioperoneo Ant.</text>
+                        <text x="165" y="105" fill="#84c400" font-size="9" text-anchor="middle" font-weight="bold">Lig. Tibioperoneo Post.</text>
+                    </svg>`;
+            } else {
+                container.innerHTML = `
+                    <svg viewBox="0 0 320 180" class="w-full max-w-[280px] h-auto">
+                        <rect x="40" y="20" width="45" height="140" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+                        <text x="50" y="95" fill="#334155" font-size="11" font-weight="bold">Radio</text>
+                        <rect x="235" y="20" width="45" height="140" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+                        <text x="242" y="95" fill="#334155" font-size="11" font-weight="bold">Cúbito</text>
+                        <g stroke="#436600" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="85" y1="35" x2="235" y2="70" />
+                            <line x1="85" y1="55" x2="235" y2="90" />
+                            <line x1="85" y1="75" x2="235" y2="110" />
+                            <line x1="85" y1="95" x2="235" y2="130" />
+                            <line x1="85" y1="115" x2="235" y2="150" />
+                        </g>
+                        <rect x="105" y="75" width="110" height="26" rx="4" fill="#243700" fill-opacity="0.85" stroke="#659b00" />
+                        <text x="160" y="92" fill="#f1f6eb" font-size="9.5" text-anchor="middle" font-weight="bold">Fibras Colágenas Oblicuas</text>
+                    </svg>`;
+            }
+        }
+
+        function testFibrousKnowledge() {
+            const current = state.currentFibrousSpecimen;
+            const el = fibrousData[current];
+            alert("Fundamento Kinésico de " + el.title + ":\n\n" + el.clinical);
+        }
+
+        // ==========================================
+        // MÓDULO 3: SINOSTOSIS Y EVOLUCIÓN
+        // ==========================================
+        function updateOssificationTimeline(step) {
+            step = parseInt(step);
+            const labels = [
+                "Recién Nacido (0 años)",
+                "Infancia Temprana (2-6 años)",
+                "Adolescencia (12-16 años)",
+                "Adulto Joven / Maduro (25+ años)"
+            ];
+
+            document.getElementById('age-label').textContent = labels[step];
+
+            const cranialVis = document.getElementById('cranial-visualizer');
+            const epiphysealVis = document.getElementById('epiphyseal-visualizer');
+            const cranialDesc = document.getElementById('cranial-desc');
+            const epiphysealDesc = document.getElementById('epiphyseal-desc');
+            const statCran = document.getElementById('status-cranial');
+            const statEpi = document.getElementById('status-epiphyseal');
+
+            if (step === 0) {
+                statCran.textContent = "Fontanelas abiertas / Tejido membranoso";
+                statCran.className = "text-[10px] bg-accent-light text-accent font-semibold px-2 py-0.5 rounded border border-accent/20";
+                cranialDesc.textContent = "Fontanelas amplias compuestas por tejido conectivo denso irregular no osificado que confieren maleabilidad cefálica en el parto.";
+
+                statEpi.textContent = "Cartílago hialino activo (proliferación)";
+                statEpi.className = "text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded border border-emerald-200";
+                epiphysealDesc.textContent = "Placa o fisis epifisaria hialina intacta. La proliferación condrocitaria permite el crecimiento en longitud del hueso largo.";
+
+                cranialVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <rect x="20" y="20" width="80" height="80" rx="4" fill="#cbd5e1" stroke="#94a3b8" />
+                        <rect x="140" y="20" width="80" height="80" rx="4" fill="#cbd5e1" stroke="#94a3b8" />
+                        <rect x="100" y="20" width="40" height="80" fill="#436600" fill-opacity="0.4" stroke="#659b00" stroke-dasharray="2,2" />
+                        <text x="120" y="65" fill="#84c400" font-size="9" text-anchor="middle" font-weight="bold">Fontanela Membranosa</text>
+                    </svg>`;
+
+                epiphysealVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <rect x="30" y="15" width="180" height="35" rx="6" fill="#e2e8f0" stroke="#94a3b8" />
+                        <text x="120" y="36" fill="#475569" font-size="10" text-anchor="middle" font-weight="bold">Epífisis</text>
+                        <rect x="30" y="50" width="180" height="20" fill="#436600" fill-opacity="0.75" stroke="#659b00" />
+                        <text x="120" y="64" fill="#ffffff" font-size="9" text-anchor="middle" font-weight="bold">Cartílago Epifisario Hialino</text>
+                        <rect x="50" y="70" width="140" height="40" rx="4" fill="#cbd5e1" stroke="#94a3b8" />
+                        <text x="120" y="95" fill="#475569" font-size="10" text-anchor="middle" font-weight="bold">Diáfisis</text>
+                    </svg>`;
+            } else if (step === 1) {
+                statCran.textContent = "Sutura serrada establecida";
+                statCran.className = "text-[10px] bg-accent-light text-accent font-semibold px-2 py-0.5 rounded border border-accent/20";
+                cranialDesc.textContent = "Fontanelas cerradas. Bordes óseos en contacto con interdigitaciones dentadas unidas firmemente por tejido conectivo denso.";
+
+                statEpi.textContent = "Fisis en hipertrofia y osificación activa";
+                statEpi.className = "text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded border border-emerald-200";
+                epiphysealDesc.textContent = "El cartílago hialino epifisario mantiene tasas de proliferación e hipertrofia vascularizada para sostener el crecimiento infantil.";
+
+                cranialVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <path d="M 20,20 L 110,20 L 115,40 L 105,60 L 120,80 L 110,100 L 20,100 Z" fill="#cbd5e1" stroke="#94a3b8" />
+                        <path d="M 220,20 L 130,20 L 125,40 L 135,60 L 120,80 L 130,100 L 220,100 Z" fill="#cbd5e1" stroke="#94a3b8" />
+                        <path d="M 110,20 L 130,20 M 115,40 L 125,40 M 105,60 L 135,60 M 120,80 L 120,80" stroke="#436600" stroke-width="2.5" />
+                        <text x="120" y="112" fill="#84c400" font-size="9" text-anchor="middle" font-weight="bold">Sutura Fibrosa Activa</text>
+                    </svg>`;
+
+                epiphysealVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <rect x="30" y="15" width="180" height="35" rx="6" fill="#e2e8f0" stroke="#94a3b8" />
+                        <rect x="30" y="50" width="180" height="15" fill="#436600" fill-opacity="0.6" stroke="#659b00" />
+                        <text x="120" y="61" fill="#ffffff" font-size="8.5" text-anchor="middle" font-weight="bold">Fisis de Crecimiento</text>
+                        <rect x="50" y="65" width="140" height="45" rx="4" fill="#cbd5e1" stroke="#94a3b8" />
+                        <text x="120" y="92" fill="#475569" font-size="10" text-anchor="middle" font-weight="bold">Diáfisis</text>
+                    </svg>`;
+            } else if (step === 2) {
+                statCran.textContent = "Inicio de sinostosis marginal";
+                statCran.className = "text-[10px] bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded border border-amber-200";
+                cranialDesc.textContent = "Puentes óseos sustituyen el tejido conectivo fibroso en varios segmentos suturales.";
+
+                statEpi.textContent = "Cierre epifisario avanzado";
+                statEpi.className = "text-[10px] bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded border border-amber-200";
+                epiphysealDesc.textContent = "La síntesis de matriz ósea supera la proliferación del cartílago hialino; la placa epifisaria se adelgaza intensamente.";
+
+                cranialVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <rect x="20" y="20" width="200" height="80" rx="4" fill="#e2e8f0" stroke="#94a3b8" />
+                        <path d="M 120,20 Q 115,50 125,80 T 120,100" stroke="#c59b27" stroke-width="2" stroke-dasharray="4,3" />
+                        <text x="120" y="112" fill="#c59b27" font-size="9" text-anchor="middle" font-weight="bold">Fusión Ósea en Curso</text>
+                    </svg>`;
+
+                epiphysealVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <rect x="30" y="15" width="180" height="35" rx="6" fill="#e2e8f0" stroke="#94a3b8" />
+                        <line x1="30" y1="52" x2="210" y2="52" stroke="#c59b27" stroke-width="3" stroke-dasharray="6,2" />
+                        <rect x="50" y="55" width="140" height="50" rx="4" fill="#e2e8f0" stroke="#94a3b8" />
+                        <text x="120" y="47" fill="#c59b27" font-size="8.5" text-anchor="middle" font-weight="bold">Fisis casi osificada</text>
+                    </svg>`;
+            } else {
+                statCran.textContent = "SINOSTOSIS COMPLETA (Art. Ósea)";
+                statCran.className = "text-[10px] bg-accent text-white font-bold px-2 py-0.5 rounded";
+                cranialDesc.textContent = "Fusión ósea total sin línea conectiva intermedia. Ambos huesos integran una sola pieza anatómica inmóvil continua.";
+
+                statEpi.textContent = "SINOSTOSIS / Línea Epifisaria";
+                statEpi.className = "text-[10px] bg-accent text-white font-bold px-2 py-0.5 rounded";
+                epiphysealDesc.textContent = "Cese irreversible del crecimiento longitudinal. El cartílago hialino fue sustituido por hueso denso (línea epifisaria).";
+
+                cranialVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <rect x="20" y="20" width="200" height="80" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="2" />
+                        <line x1="120" y1="20" x2="120" y2="100" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2,6" />
+                        <text x="120" y="65" fill="#475569" font-size="11" text-anchor="middle" font-weight="bold">Un solo hueso continuo (Sinostosis)</text>
+                    </svg>`;
+
+                epiphysealVis.innerHTML = `
+                    <svg viewBox="0 0 240 120" class="w-full max-w-[200px] h-auto">
+                        <path d="M 30,15 L 210,15 L 210,48 L 190,52 L 190,105 L 50,105 L 50,52 L 30,48 Z" fill="#f1f5f9" stroke="#64748b" stroke-width="2" />
+                        <line x1="40" y1="50" x2="200" y2="50" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3" />
+                        <text x="120" y="46" fill="#334155" font-size="9" text-anchor="middle" font-weight="bold">Línea Epifisaria (Sinostosis)</text>
+                        <text x="120" y="80" fill="#64748b" font-size="10" text-anchor="middle">Hueso Largo Unificado</text>
+                    </svg>`;
+            }
+        }
+
+        // ==========================================
+        // MÓDULO 4: ARTICULACIONES CARTILAGINOSAS
+        // ==========================================
+        function toggleCartilageView(view) {
+            state.cartilageView = view;
+            ['sincondrosis', 'sinfisis'].forEach(v => {
+                const btn = document.getElementById('btn-cart-' + v);
+                if (!btn) return;
+                if (v === view) {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-accent text-white shadow-xs transition";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-200 transition";
+                }
+            });
+
+            const title = document.getElementById('cartilage-model-title');
+            const badge = document.getElementById('cartilage-mov-badge');
+            const f1 = document.getElementById('cart-feature-1');
+            const f2 = document.getElementById('cart-feature-2');
+
+            if (view === 'sincondrosis') {
+                title.textContent = "Modelo Biomecánico: Sincondrosis (Cartílago Hialino Puro)";
+                badge.textContent = "Sinartrosis (Inmóvil)";
+                badge.className = "text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700";
+                f1.innerHTML = "<strong>Histología:</strong> Cartílago hialino puro avascular. Articulación sinartrósica rígida; en jóvenes deportistas no tolera fuerzas de cizallamiento extremas.";
+                f2.innerHTML = "<strong>Ejemplos Clásicos:</strong> Placa de crecimiento epifisaria y articulación costo-condral de la 1.ª costilla con el manubrio del esternón.";
+            } else {
+                title.textContent = "Modelo Biomecánico: Sínfisis (Fibrocartílago Intermedio)";
+                badge.textContent = "Anfiartrosis (Escaso Movimiento)";
+                badge.className = "text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-accent-light text-accent border border-accent/20";
+                f1.innerHTML = "<strong>Histología:</strong> Extremos óseos cubiertos por cartílago hialino articular con un disco central masivo de <em>fibrocartílago</em>.";
+                f2.innerHTML = "<strong>Localización en Línea Media:</strong> Sínfisis del pubis, discos intervertebrales y articulación manubrio-esternal.";
+            }
+
+            const slider = document.getElementById('compression-slider');
+            if (slider) slider.value = 0;
+            applyCartilageLoad(0);
+        }
+
+        function applyCartilageLoad(val) {
+            val = parseInt(val);
+            const isSymphysis = (state.cartilageView === 'sinfisis');
+            const loadN = Math.round(val * 12.5); // Hasta 1250 N
+            const strainMm = isSymphysis ? (val * 0.045).toFixed(1) : (val * 0.008).toFixed(1);
+
+            document.getElementById('load-value').textContent = loadN + " N";
+            document.getElementById('strain-value').textContent = strainMm + " mm";
+
+            renderCartilageSimulation(val);
+        }
+
+        function renderCartilageSimulation(loadPercent = 0) {
+            const container = document.getElementById('cartilage-interactive-svg');
+            if (!container) return;
+
+            const isSymphysis = (state.cartilageView === 'sinfisis');
+            const compressionDelta = isSymphysis ? (loadPercent * 0.16) : (loadPercent * 0.03);
+            const discHeight = Math.max(12, 38 - compressionDelta);
+            const bulge = isSymphysis ? (loadPercent * 0.14) : 0;
+
+            if (isSymphysis) {
+                container.innerHTML = `
+                    <svg viewBox="0 0 280 200" class="w-full max-w-[260px] h-auto">
+                        <g stroke="#c59b27" stroke-width="2.5" fill="#c59b27">
+                            <line x1="140" y1="5" x2="140" y2="${20 + (loadPercent*0.1)}" stroke-linecap="round" />
+                            <polygon points="135,${18 + (loadPercent*0.1)} 140,${25 + (loadPercent*0.1)} 145,${18 + (loadPercent*0.1)}" />
+                        </g>
+                        <text x="140" y="12" fill="#c59b27" font-size="8.5" text-anchor="middle" font-weight="bold">CARGA AXIAL</text>
+                        <rect x="50" y="${28 + (loadPercent*0.08)}" width="180" height="38" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+                        <text x="140" y="${52 + (loadPercent*0.08)}" fill="#334155" font-size="10.5" text-anchor="middle" font-weight="bold">Cuerpo Vertebral / Rama Púbica</text>
+                        <rect x="55" y="${66 + (loadPercent*0.08)}" width="170" height="4" fill="#38bdf8" />
+                        <path d="M ${55 - bulge},${70 + (loadPercent*0.08)} 
+                                 Q ${48 - bulge*1.5},${70 + discHeight/2} ${55 - bulge},${70 + discHeight} 
+                                 L ${225 + bulge},${70 + discHeight} 
+                                 Q ${232 + bulge*1.5},${70 + discHeight/2} ${225 + bulge},${70 + (loadPercent*0.08)} Z" 
+                              fill="#436600" fill-opacity="0.85" stroke="#659b00" stroke-width="1.8" />
+                        <text x="140" y="${72 + discHeight/2 + 3}" fill="#ffffff" font-size="9" text-anchor="middle" font-weight="bold">Disco de Fibrocartílago</text>
+                        <rect x="55" y="${70 + discHeight}" width="170" height="4" fill="#38bdf8" />
+                        <rect x="50" y="${74 + discHeight}" width="180" height="38" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+                        <text x="140" y="${98 + discHeight}" fill="#334155" font-size="10.5" text-anchor="middle" font-weight="bold">Cuerpo Vertebral Caudal</text>
+                    </svg>`;
+            } else {
+                container.innerHTML = `
+                    <svg viewBox="0 0 280 200" class="w-full max-w-[260px] h-auto">
+                        <rect x="60" y="30" width="160" height="42" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+                        <text x="140" y="55" fill="#334155" font-size="11" text-anchor="middle" font-weight="bold">Epífisis Ósea</text>
+                        <rect x="60" y="72" width="160" height="${discHeight*0.75}" fill="#436600" fill-opacity="0.85" stroke="#659b00" stroke-width="2" />
+                        <text x="140" y="${74 + (discHeight*0.75)/2 + 3}" fill="#ffffff" font-size="9" text-anchor="middle" font-weight="bold">Cartílago Hialino (Sincondrosis)</text>
+                        <rect x="75" y="${72 + (discHeight*0.75)}" width="130" height="55" rx="4" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2" />
+                        <text x="140" y="${102 + (discHeight*0.75)}" fill="#334155" font-size="11" text-anchor="middle" font-weight="bold">Diáfisis</text>
+                        <text x="140" y="165" fill="#94a3b8" font-size="9" text-anchor="middle">Unión rígida sinartrósica (crecimiento)</text>
+                    </svg>`;
+            }
+        }
+
+        // ==========================================
+        // MÓDULO 5: CASOS CLÍNICOS KINESIOLÓGICOS
+        // ==========================================
+        function checkCaseKine(caseNum, option) {
+            const fb = document.getElementById('feedback-kine-' + caseNum);
+            if (!fb) return;
+            fb.classList.remove('hidden');
+
+            if (caseNum === 1) {
+                if (option === 'A') {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    fb.innerHTML = "<strong>¡Excelente criterio kinésico!</strong> La sindesmosis une huesos mediante bandas o ligamentos de tejido conectivo denso irregular y permite un ligero movimiento elástico amortiguador (anfiartrosis). Su lesión desestabiliza la mortaja y demanda una rehabilitación kinésica específica de propiocepción y apoyo.";
+                } else {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-rose-50 text-rose-900 border border-rose-200";
+                    fb.innerHTML = "<strong>Incorrecto:</strong> La sindesmosis carece de cavidad sinovial y no posee movilidad libre diartrósica. Pertenece a las articulaciones fibrosas.";
+                }
+            } else if (caseNum === 2) {
+                if (option === 'A') {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    fb.innerHTML = "<strong>¡Diagnóstico biomecánico exacto!</strong> La sínfisis es una articulación cartilaginosa ubicada siempre en la línea media axial. Sus superficies articulares están tapizadas por cartílago hialino y conectadas por un disco fibrocartilaginoso central que actúa como anfiartrosis disipadora de cargas de cizallamiento durante la marcha.";
+                } else {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-rose-50 text-rose-900 border border-rose-200";
+                    fb.innerHTML = "<strong>Incorrecto:</strong> La sínfisis no es una sincondrosis hialina pura ni osifica prematuramente; posee fibrocartílago intermedio y persiste como anfiartrosis funcional.";
+                }
+            } else if (caseNum === 3) {
+                if (option === 'A') {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    fb.innerHTML = "<strong>¡Correcto!</strong> La fisis epifisaria es una sincondrosis transitoria de cartílago hialino (sinartrosis) destinada al crecimiento longitudinal. Al finalizar la madurez esquelética, la osificación completa la transforma en una sinostosis (línea epifisaria) que unifica el hueso.";
+                } else {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-rose-50 text-rose-900 border border-rose-200";
+                    fb.innerHTML = "<strong>Incorrecto:</strong> El cartílago de crecimiento nunca se transforma en una diartrosis sinovial. Al culminar el crecimiento, se transforma en hueso sólido (sinostosis).";
+                }
+            } else if (caseNum === 4) {
+                if (option === 'A') {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
+                    fb.innerHTML = "<strong>¡Brillante fundamentación!</strong> Los discos intervertebrales constituyen sínfisis (articulaciones cartilaginosas anfiartrosis). Su anillo fibroso periférico y núcleo pulposo absorben y disipan las tensiones gravitatorias y de impacto axial.";
+                } else {
+                    fb.className = "mt-2 p-3 rounded-xl text-xs leading-relaxed bg-rose-50 text-rose-900 border border-rose-200";
+                    fb.innerHTML = "<strong>Incorrecto:</strong> Las membranas interóseas unen diáfisis de huesos largos paralelos (radio-cúbito, tibia-peroné), no cuerpos vertebrales adyacentes.";
+                }
+            }
+        }
+
+        // ==========================================
+        // MODALES INSTITUCIONALES
+        // ==========================================
+        function openTutorial() {
+            document.getElementById('modal-tutorial').classList.remove('hidden');
+        }
+
+        function closeTutorial() {
+            document.getElementById('modal-tutorial').classList.add('hidden');
+        }
+
+        function openCompendioModal() {
+            document.getElementById('modal-compendio').classList.remove('hidden');
+        }
+
+        function closeCompendioModal() {
+            document.getElementById('modal-compendio').classList.add('hidden');
+        }
+
+        // Inicialización en carga de página
+        window.onload = function() {
+            renderTokensPool();
+            renderFibrousSVG('sutura');
+            updateOssificationTimeline(0);
+            renderCartilageSimulation(0);
+        };
+    </script>
+</body>
+</html>
